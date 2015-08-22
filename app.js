@@ -13,6 +13,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api');
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use(passport.session());
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/api', api);
 
 var User = require('./models/User');
 passport.use(new LocalStrategy(User.authenticate()));
