@@ -3,13 +3,13 @@ var mongoose = require('mongoose');
 var passportLocalMongoose = require('passport-local-mongoose');
 
 var UserSchema = mongoose.Schema({
-  email: String,
+  familyName: String,
   address: String,
-  familyDescription: String,
-  members: Number,
-  photo_url: String,
-  team: [{
-  }]
+  phoneNumer: String,
+  email: String,
+  numFamilyMembers: Number,
+  monthlyGallons: [],
+  dailyGallons: []
 });
 
 UserSchema.plugin(passportLocalMongoose);
