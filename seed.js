@@ -37,26 +37,29 @@ var createCompetition = function(done){
       endDate: "09.11.2015",
       prize: "Disneyland family pack",
       primaryContact: {
-      name: "Bob",
-      email: "bob@bob.com",
+        name: "Bob",
+        email: "bob@bob.com"
+      }
     }),
     Competition.create({
       name: "Culver City",
       startDate: Date.now,
-      endDate: ,
+      endDate: "10.30.2015",
       prize: "$500 cash prize",
       primaryContact: {
-      name: "Sue",
-      email: "sue@sue.com",
+        name: "Sue",
+        email: "sue@sue.com"
+      }
     }),
     Competition.create({
       name: "Woodland Hills",
       startDate: Date.now,
-      endDate: ,
+      endDate: "10.30.2015",
       prize: "$250 gift card to arclight",
       primaryContact: {
-      name: "Tamara",
-      email: "Tamara@tamara.com",
+        name: "Tamara",
+        email: "Tamara@tamara.com"
+      }
     })
   ]).then(function(){
     console.log('created competitions');
@@ -97,7 +100,7 @@ var createUsers = function(done){
       dailyGallons: [],
       competition: pasadena._id
     }),
-      User.create({
+    User.create({
       familyName: "Burke",
       address: "779 Elmira St, Pasadena, CA 91104",
       phoneNumer: "555-555-5555",
@@ -107,7 +110,7 @@ var createUsers = function(done){
       dailyGallons: [],
       competition: pasadena._id
     }),
-      User.create({
+    User.create({
       familyName: "Chang",
       address: "850 N Madison Ave, Pasadena, CA 91104",
       phoneNumer: "555-555-5555",
@@ -117,47 +120,47 @@ var createUsers = function(done){
       dailyGallons: [],
       competition: pasadena._id
     }),
-      User.create({
+    User.create({
       familyName: "Turner",
       address: "22421 Bessemer St, Woodland Hills, CA 91367",
       phoneNumer: "555-555-5555",
       email: "turner@turner.com",
-      numFamilyMembers: 8,
+      numFamilyMembers: 3,
       monthlyGallons: [],
       dailyGallons: [],
       competition: woodlandHills._id
     }),
-      User.create({
+    User.create({
       familyName: "Preston",
       address: "22520 Calvert St, Woodland Hills, CA 91367",
       phoneNumer: "555-555-5555",
       email: "preston@preston.com",
-      numFamilyMembers: 8,
+      numFamilyMembers: 4,
       monthlyGallons: [],
       dailyGallons: [],
       competition: woodlandHills._id
     }),
-      User.create({
+    User.create({
       familyName: "Weiss",
       address: "22219 Summit Vue Dr, Woodland Hills, CA 91367",
       phoneNumer: "555-555-5555",
       email: "weiss@weiss.com",
-      numFamilyMembers: 8,
+      numFamilyMembers: 6,
       monthlyGallons: [],
       dailyGallons: [],
       competition: woodlandHills._id
     }),
-      User.create({
+    User.create({
       familyName: "Hernandez",
       address: "22545 Tiara St, Woodland Hills, CA 91367",
       phoneNumer: "555-555-5555",
       email: "hernandez@hernandez.com",
-      numFamilyMembers: 8,
+      numFamilyMembers: 3,
       monthlyGallons: [],
       dailyGallons: [],
       competition: woodlandHills._id
     }),
-      User.create({
+    User.create({
       familyName: "Purtlebaugh",
       address: "22641 Califa St, Woodland Hills, CA 91367",
       phoneNumer: "555-555-5555",
@@ -167,4 +170,62 @@ var createUsers = function(done){
       dailyGallons: [],
       competition: woodlandHills._id
     }),
-}
+    User.create({
+      familyName: "Ross",
+      address: "4131 Van Buren Pl, Culver City, CA 90232",
+      phoneNumer: "555-555-5555",
+      email: "ross@ross.com",
+      numFamilyMembers: 4,
+      monthlyGallons: [],
+      dailyGallons: [],
+      competition: culverCity._id
+    }),
+    User.create({
+      familyName: "Kuwahara",
+      address: "4161 Irving Pl, Culver City, CA 90232",
+      phoneNumer: "555-555-5555",
+      email: "kuwahara@kuwahara.com",
+      numFamilyMembers: 5,
+      monthlyGallons: [],
+      dailyGallons: [],
+      competition: culverCity._id
+    }),
+    User.create({
+      familyName: "Sanchez",
+      address: "4053 Duquesne Ave, Culver City, CA 90232",
+      phoneNumer: "555-555-5555",
+      email: "sanchez@sanchez.com",
+      numFamilyMembers: 3,
+      monthlyGallons: [],
+      dailyGallons: [],
+      competition: culverCity._id
+    }),
+    User.create({
+      familyName: "Dayrit",
+      address: "4055 Lincoln Ave, Culver City, CA 90232",
+      phoneNumer: "555-555-5555",
+      email: "dayrit@dayrit.com",
+      numFamilyMembers: 4,
+      monthlyGallons: [],
+      dailyGallons: [],
+      competition: culverCity._id
+    })
+  ]).then(function() {
+    console.log('Users created');
+    done();
+  })
+};
+
+var closeMongoose = function(done) {
+  mongoose.disconnect();
+  console.log('Mongoose disconnected.');
+  done();
+};
+
+async.series([
+  removeUsers,
+  removeCompetition,
+  createCompetition,
+  createUsers,
+  closeMongoose
+]);

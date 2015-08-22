@@ -12,7 +12,10 @@ var UserSchema = mongoose.Schema({
   numFamilyMembers: Number,
   monthlyGallons: [],
   dailyGallons: [],
-  competition: {mongoose.Schema.Types.ObjectId, ref: 'Competition'}
+  competition: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Competition'
+  }
 });
 
 UserSchema.plugin(passportLocalMongoose);
