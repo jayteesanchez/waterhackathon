@@ -1,11 +1,12 @@
-var User = require('../models/Users');
+var User = require('../models/User');
 
-
-module.exports.renderUsers = function(req, res) {
+// GET families in JSON
+module.exports.renderFamilies = function(req, res) {
   User.find({}, function (err, users) {
     if(err) res.rend(err);
 
     res.json(users);
   });
 };
+
 
