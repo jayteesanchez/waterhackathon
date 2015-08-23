@@ -2,12 +2,26 @@
 <% include ../partials/nav %>
 
 <div class="container">
-  <h2><%= user.familyName %></h2>
+  <h3>The <%= user.familyName %> household</h3>
   <div class="row">
     <div class="col s12">
+      <div class="row">
+        <div class="col s8 offset-2">
+          <div class="card-panel teal">
+            <span class="white-text">
+              <div>The <%=user.familyName %> family has <%= user.numFamilyMembers %> members</div>
+              <div>Daily gallons per person: <%= user.dailyGallons/user.numFamilyMembers %></div>
+              <div>Monthly gallons per person: <%= user.monthlyGallons/user.numFamilyMembers %></div>
+            </span>
+          </div>
+        </div>
+      </div>
       <div class="counter"></div>
-      <div class="avgGallChart"></div>
-      <div></div>
+      <div class="avgGallChart">
+        <canvas id="myChart" width="750px" height="500px"></canvas>
+      </div>
+      <div>
+      </div>
       <div class="row waterTips">
         <div class="col s4 tip">
         </div>
@@ -16,13 +30,17 @@
         <div class="col s4 tip">
         </div>
       </div>
-      <%= user.numFamilyMembers %>
-      <%= user.monthlyGallons %>
-      <%= user.dailyGallons %>
-    <div>
+      <div>
+      </div>
+    </div>
   </div>
 
   <!-- "/users/ + <%= user.id %> + /edit" -->
 </div>
 
+<script src="../../javascripts/api.js" type="text/javascript" charset="utf-8" async defer></script>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+
 <% include ../partials/footer %>
+
