@@ -15,32 +15,6 @@ var listUsers = function(req, res, next) {
 };
 
 
-// Create a new user
-var createUser = function(req, res) {
-  User.register(new User(
-    {
-      username: req.body.familyName,
-      address: req.body.address,
-      phoneNumber: req.body.phoneNumber,
-      email: req.body.email,
-      numFamilyMembers: req.body.numFamilyMembers,
-      montlyGallons: req.body.montlyGallons,
-      dailyGallons: req.body.dailyGallons,
-      competition: req.body.competition
-    }), req.body.password, function(err, user) {
-      if (err) return res.render('auth/register',
-        {user: user});
-        passport.authenticate('local')(req, res, function() {
-          req.session.save(function(err) {
-            if (err) {
-              return next(err);
-            }
-            res.redirect('/users/' + req.user.id);
-        });
-     });
-  });
-};
-
 // Render Edit user Form
 var editUserView = function(req, res, next) {
   var id = req.params.id;
@@ -58,6 +32,32 @@ var editUserView = function(req, res, next) {
     res.render('./users/edit', {title: "Edit user", user: user});
    });
 }
+// Create a new user
+var createUser = function(req, res) {
+  User.register(new User(
+    {
+      username: req.body.familyName,
+      address: req.body.address,
+      phoneNumber: req.body.phoneNumber,
+      email: req.body.email,
+      numFamilyMembers: req.body.numFamilyMembers,
+      monthlyGallons: req.body.monthlyGallons,
+      dailyGallons: req.body.dailyGallons,
+      competition: req.body.competition
+    }), req.body.password, function(err, user) {
+      if (err) return res.render('auth/register',
+        {user: user});
+        passport.authenticate('local')(req, res, function() {
+          req.session.save(function(err) {
+            if (err) {
+              return next(err);
+            }
+            res.redirect('/users/' + req.user.id);
+        });
+     });
+  });
+};
+
 
 // UPDATE user PAGE
 var editUser = function(req, res, next) {
@@ -66,10 +66,14 @@ var editUser = function(req, res, next) {
   User.findById({_id: id}, function(error, user) {
     if (error) res.json({message: 'Could not find user because ' + error});
 
-    if (req.body.username) user.username = req.body.username;
+    if (req.body.username) user.username = req.body.familyName;
+    if (req.body.password) user.password = req.body.password;
+    if (req.body.address) user.address = req.body.address;
+    if (req.body.phoneNumber) user.phoneNumber = req.body.phoneNumber;
     if (req.body.email) user.email = req.body.email;
-    if (req.body.password) user.password= req.body.password;
-    if (req.body.zipcode) user.zipcode = req.body.zipcode;
+    if (req.body.numFamilyMembers) user.numFamilyMembers = req.body.numFamilyMembers;
+    if (req.body.monthlyGallons) user.monthlyGallons = req.body.monthlyGallons;
+    if (req.body.dailyGallons) user.dailyGallons = req.body.dailyGallons;
 
     user.save(function(error) {
       if (error) res.json({message: 'user successfully updated'});
