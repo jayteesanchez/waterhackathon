@@ -1,6 +1,6 @@
 <!-- Dropdown Structure -->
 <!-- LOGGED OUT -->
-<ul id="dropdown1" class="dropdown-content blue accent-2">
+<!-- <ul id="dropdown1" class="dropdown-content blue accent-2">
   <li><a href="/about"><font color="white">About</font></a></li>
   <li><a href="/register"><font color="white">Register</font></a></li>
   <li class="divider"></li>
@@ -8,10 +8,79 @@
 </ul>
 <nav>
   <div class="nav-wrapper blue accent-2">
-    <a href="/" class="brand-logo waterwars">Water Wars</a>
     <ul class="right hide-on-med-and-down">
       <!-- Dropdown Trigger -->
-      <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Menu<i class="material-icons right arrow_drop_down"></i></a></li>
+<!--       <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Menu<i class="material-icons right arrow_drop_down"></i></a></li>
     </ul>
   </div>
-</nav>
+</nav> -->
+
+<ul id="dropdown1" class="dropdown-content blue accent-2">
+<% if (typeof user !='undefined') { %>
+  <li><a href="/users/<%= user.id %>"><font color="white">Your Profile</font></a></li>
+  <li class="divider"></li>
+  <li class="divider"></li>
+  <li><a href="/users/index"><font color="white">Your Competition</font></a></li>
+  <li class="divider"></li>
+  <li class="divider"></li>
+  <li><a href="/about"><font color="white">About</font></a></li>
+  <li class="divider"></li>
+  <li class="divider"></li>
+  <li><a href="/logout"><font color="white">Logout</font></a></li>
+  <li class="divider"></li>
+
+<% }else { %>
+  <li><a href="/about"><font color="white">About Water Wars</font></a></li>
+  <li class="divider"></li>
+  <li class="divider"></li>
+  <li><a href="/login"><font color="white">Log In</font></a></li>
+  <li class="divider"></li>
+  <li class="divider"></li>
+  <li><a href="/register"><font color="white">Register</font></a></li>
+  <li class="divider"></li>
+  <li class="divider"></li>
+<% } %>
+</ul>
+<nav>
+   <div class="nav-wrapper blue accent-2">
+      <a href="/" class="brand-logo waterwars">Water Wars</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+     <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <% if (typeof user =='undefined') { %>
+       <li><a href="/login"><font color="white">Login</font></a></li>
+       <li><a href="/register"><font color="white">Get Started</font></a></li>
+    <% }else { %>
+       <li><a href="/about"><font color="white">About Water Wars</font></a></li>
+    <% } %>
+    <% if (typeof user !='undefined') { %>
+    <% } %>
+       <li><a class="dropdown-button" href="#!" data-activates="dropdown1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Menu<i class="material-icons right">arrow_drop_down</i></a></li>
+     </ul>
+        <ul class="side-nav" id="mobile-demo">
+       <li class="divider"></li>
+       <li><a href="/about"><font color="white">About</font></a></li>
+       <li class="divider"></li>
+    <% if (typeof user !='undefined') { %>
+       <li><a href="#"><font color="white">Your Profile</font></a></li>
+       <li class="divider"></li>
+       <li class="divider"></li>
+       <li><a href="/users/index"><font color="white">Your Competition</font></a></li>
+       <li class="divider"></li>
+       <li><a href="/about"><font color="white">About</font></a></li>
+       <li class="divider"></li>
+       <li><a href="/logout"><font color="white">Logout</font></a></li>
+       <li class="divider"></li>
+       <li class="divider"></li>
+    <% }else { %>
+       <li><a href="/login"><font color="white">Login</font></a></li>
+       <li class="divider"></li>
+       <li class="divider"></li>
+       <li><a href="/about"><font color="white">About</font></a></li>
+       <li class="divider"></li>
+       <li class="divider"></li>
+       <li><a href="/register"><font color="white">Get Started</font></a></li>
+       <li class="divider"></li>
+    <% } %>
+      </ul>
+   </div>
+ </nav>
