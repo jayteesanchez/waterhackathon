@@ -11,12 +11,12 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var api = require('./routes/api');
 
 var app = express();
 var router = express.Router();
+var routes = require('./routes/index');
+var users = require('./routes/users');
+var api = require('./routes/api');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,14 +41,15 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', routes);
-app.use('/users', users);
-app.use('/api', api);
 
 var User = require('./models/User');
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+app.use('/', routes);
+app.use('/users', users);
+app.use('/api', api);
 
 mongoose.connect('mongodb://localhost/waterhackathon');
 

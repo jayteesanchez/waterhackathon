@@ -36,22 +36,24 @@ var editUserView = function(req, res, next) {
 var createUser = function(req, res) {
   User.register(new User(
     {
-      username: req.body.familyName,
+      familyName: req.body.familyName,
       address: req.body.address,
       phoneNumber: req.body.phoneNumber,
+      username: req.body.username,
       email: req.body.email,
       numFamilyMembers: req.body.numFamilyMembers,
       monthlyGallons: req.body.monthlyGallons,
       dailyGallons: req.body.dailyGallons,
       competition: req.body.competition
     }), req.body.password, function(err, user) {
-      if (err) return res.render('auth/register',
-        {user: user});
+      if (err) return res.redirect('/users');
         passport.authenticate('local')(req, res, function() {
           req.session.save(function(err) {
             if (err) {
+              console.log(err);
               return next(err);
             }
+            console.log('user: '+ req.user.id);
             res.redirect('/users/' + req.user.id);
         });
      });
@@ -89,7 +91,7 @@ var showUser = function(req, res, next) {
   User.findById({_id: id}, function(error, user) {
     if(error) res.json({message: 'Could not find user because: ' + error});
     res.render(
-      './users/show', {
+      '/users/show', {
         user: req.user
       }
     )
