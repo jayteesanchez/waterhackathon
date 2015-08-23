@@ -10,8 +10,8 @@ var UserSchema = mongoose.Schema({
   phoneNumber: String,
   email: String,
   numFamilyMembers: Number,
-  monthlyGallons: [],
-  dailyGallons: [],
+  monthlyGallons: Number,
+  dailyGallons: Number,
   competition: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Competition'
