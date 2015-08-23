@@ -54,7 +54,7 @@ var createUser = function(req, res) {
               return next(err);
             }
             console.log('user: '+ req.user.id);
-            res.redirect('/users/' + req.user.id);
+            res.redirect('./users/' + req.user.id);
         });
      });
   });
@@ -92,7 +92,7 @@ var showUser = function(req, res, next) {
     if(error) res.json({message: 'Could not find user because: ' + error});
     res.render(
       './users/show', {
-        user: req.user
+        user: user
       }
     )
     // API
