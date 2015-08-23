@@ -10,7 +10,7 @@ var CompetitionSchema = mongoose.Schema({
     email: String,
   },
 
-  families: [{
+  users: [{
     type: mongoose.Schema.Types.ObjectId, ref: 'User'
   }]
 

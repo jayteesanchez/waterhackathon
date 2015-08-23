@@ -9,6 +9,7 @@ var woodlandHills;
 var pasadena;
 var culverCity;
 
+
 var removeUsers = function(done){
   User.remove({}, function(err){
     if (err){
@@ -39,7 +40,8 @@ var createCompetition = function(done){
       primaryContact: {
         name: "Bob",
         email: "bob@bob.com"
-      }
+      },
+      users:
     }, function(err, competition) {
       if (err) console.log(err);
       pasadena = competition;
@@ -122,210 +124,160 @@ var createUsers = function(done) {
       monthlyGallons: 5,
       dailyGallons: 5,
       competition: pasadena._id
+    },
+    {
+      familyName: "Johnson",
+      address: "804 Merrett Dr, Pasadena, CA 91104",
+      phoneNumer: "555-555-5555",
+      username: "johnson",
+      email: "johnson@johnson.com",
+      numFamilyMembers: 4,
+      monthlyGallons: 5,
+      dailyGallons: 5,
+      competition: pasadena._id
+    },
+    {
+      familyName: "Burke",
+      address: "779 Elmira St, Pasadena, CA 91104",
+      phoneNumer: "555-555-5555",
+      username: "burke",
+      email: "burke@burke.com",
+      numFamilyMembers: 3,
+      monthlyGallons: 5,
+      dailyGallons: 5,
+      competition: pasadena._id
+    },
+    {
+      familyName: "Chang",
+      address: "850 N Madison Ave, Pasadena, CA 91104",
+      phoneNumer: "555-555-5555",
+      username: "chang",
+      email: "chang@chang.com",
+      numFamilyMembers: 8,
+      monthlyGallons: 5,
+      dailyGallons: 5,
+      competition: pasadena._id
+    },
+    {
+      familyName: "Turner",
+      address: "22421 Bessemer St, Woodland Hills, CA 91367",
+      phoneNumer: "555-555-5555",
+      username: "Turner",
+      email: "turner@turner.com",
+      numFamilyMembers: 3,
+      monthlyGallons: 5,
+      dailyGallons: 5,
+      competition: woodlandHills._id
+    },
+    {
+      familyName: "Preston",
+      address: "22520 Calvert St, Woodland Hills, CA 91367",
+      phoneNumer: "555-555-5555",
+      username: "Preston",
+      email: "preston@preston.com",
+      numFamilyMembers: 4,
+      monthlyGallons: 5,
+      dailyGallons: 5,
+      competition: woodlandHills._id
+    },
+    {
+      familyName: "Weiss",
+      address: "22219 Summit Vue Dr, Woodland Hills, CA 91367",
+      phoneNumer: "555-555-5555",
+      username: "Weiss",
+      email: "weiss@weiss.com",
+      numFamilyMembers: 6,
+      monthlyGallons: 5,
+      dailyGallons: 5,
+      competition: woodlandHills._id
+    },
+    {
+      familyName: "Hernandez",
+      address: "22545 Tiara St, Woodland Hills, CA 91367",
+      phoneNumer: "555-555-5555",
+      username: "hernandez",
+      email: "hernandez@hernandez.com",
+      numFamilyMembers: 3,
+      monthlyGallons: 5,
+      dailyGallons: 5,
+      competition: woodlandHills._id
+    },
+    {
+      familyName: "Purtlebaugh",
+      address: "22641 Califa St, Woodland Hills, CA 91367",
+      phoneNumer: "555-555-5555",
+      username: "purtlebaugh",
+      email: "purtlebaugh@purtlebaugh.com",
+      numFamilyMembers: 8,
+      monthlyGallons: 5,
+      dailyGallons: 5,
+      competition: woodlandHills._id
+    },
+    {
+      familyName: "Ross",
+      address: "4131 Van Buren Pl, Culver City, CA 90232",
+      phoneNumer: "555-555-5555",
+      username: "ross",
+      email: "ross@ross.com",
+      numFamilyMembers: 4,
+      monthlyGallons: 5,
+      dailyGallons: 5,
+      competition: culverCity._id
+    },
+    {
+      familyName: "Kuwahara",
+      address: "4161 Irving Pl, Culver City, CA 90232",
+      phoneNumer: "555-555-5555",
+      username: "kuwahara",
+      email: "kuwahara@kuwahara.com",
+      numFamilyMembers: 5,
+      monthlyGallons: 5,
+      dailyGallons: 5,
+      competition: culverCity._id
+    },
+    {
+      familyName: "Sanchez",
+      address: "4053 Duquesne Ave, Culver City, CA 90232",
+      phoneNumer: "555-555-5555",
+      username: "sanchez",
+      email: "sanchez@sanchez.com",
+      numFamilyMembers: 3,
+      monthlyGallons: 5,
+      dailyGallons: 5,
+      competition: culverCity._id
+    },
+    {
+      familyName: "Dayrit",
+      address: "4055 Lincoln Ave, Culver City, CA 90232",
+      phoneNumer: "555-555-5555",
+      username: "dayrit",
+      email: "dayrit@dayrit.com",
+      numFamilyMembers: 4,
+      monthlyGallons: 4,
+      dailyGallons: 5,
+      competition: culverCity._id
+    },
+    {
+      familyName: "Daily",
+      address: "4107 Jackson Ave, Culver City, CA 90232",
+      phoneNumer: "555-555-5555",
+      username: "daily",
+      email: "daily@daily.com",
+      numFamilyMembers: 4,
+      monthlyGallons: 4,
+      dailyGallons: 5,
+      competition: culverCity._id
     }
   ];
-  User.create(users, function(err, users) {
-    if (err) console.log(err);
-    console.log('users created: ' + users);
-  }).then(function(err) {
-    if (err) console.log(err);
+
+  User.create(users, function(err, users){
+    if(err) console.log("error" + err);
+    console.log(users);
+  }).then(function(){
     done();
   })
 }
 
-// var createUsers = function(done){
-//   Promise.all([
-//     User.create({
-//       familyName: "Jone",
-//       address: "741 Elmira St, Pasadena, CA 91104",
-//       phoneNumer: "555-555-5555",
-//       email: "jone@jone.com",
-//       numFamilyMembers: 4,
-//       monthlyGallons: 5,
-//       dailyGallons: 5,
-//       competition: pasadena._id
-//     }).done(function(err, user) {
-//       console.log('created user: ' + user);
-//     })
-
-    // then(function(err) {
-    //   if (err) console.log(err);
-    //   console.log('created user');
-    // })
-    // User.create({
-    //   familyName: "Smith",
-    //   address: "809 N Catalina Ave, Pasadena, CA 91104",
-    //   phoneNumer: "555-555-5555",
-    //   email: "smith@smith.com",
-    //   numFamilyMembers: 5,
-    //   monthlyGallons: 5,
-    //   dailyGallons: 5,
-    //   competition: pasadena._id
-    // }).then(function(err){
-    //   if (err) console.log(err);
-    //   console.log('created user');
-    // }),
-    // User.create({
-    //   familyName: "Johnson",
-    //   address: "804 Merrett Dr, Pasadena, CA 91104",
-    //   phoneNumer: "555-555-5555",
-    //   email: "johnson@johnson.com",
-    //   numFamilyMembers: 4,
-    //   monthlyGallons: 5,
-    //   dailyGallons: 5,
-    //   competition: pasadena._id
-    // }).then(function(err){
-    //   if (err) console.log(err);
-    //   console.log('created user');
-    // }),
-    // User.create({
-    //   familyName: "Burke",
-    //   address: "779 Elmira St, Pasadena, CA 91104",
-    //   phoneNumer: "555-555-5555",
-    //   email: "burke@burke.com",
-    //   numFamilyMembers: 3,
-    //   monthlyGallons: 5,
-    //   dailyGallons: 5,
-    //   competition: pasadena._id
-    // }).then(function(err){
-    //   if (err) console.log(err);
-    //   console.log('created user');
-    // }),
-    // User.create({
-    //   familyName: "Chang",
-    //   address: "850 N Madison Ave, Pasadena, CA 91104",
-    //   phoneNumer: "555-555-5555",
-    //   email: "chang@chang.com",
-    //   numFamilyMembers: 8,
-    //   monthlyGallons: 5,
-    //   dailyGallons: 5,
-    //   competition: pasadena._id
-    // }).then(function(err){
-    //   if (err) console.log(err);
-    //   console.log('created user');
-    // }),
-    // User.create({
-    //   familyName: "Turner",
-    //   address: "22421 Bessemer St, Woodland Hills, CA 91367",
-    //   phoneNumer: "555-555-5555",
-    //   email: "turner@turner.com",
-    //   numFamilyMembers: 3,
-    //   monthlyGallons: 5,
-    //   dailyGallons: 5,
-    //   competition: woodlandHills._id
-    // }).then(function(err){
-    //   if (err) console.log(err);
-    //   console.log('created user');
-    // }),
-    // User.create({
-    //   familyName: "Preston",
-    //   address: "22520 Calvert St, Woodland Hills, CA 91367",
-    //   phoneNumer: "555-555-5555",
-    //   email: "preston@preston.com",
-    //   numFamilyMembers: 4,
-    //   monthlyGallons: 5,
-    //   dailyGallons: 5,
-    //   competition: woodlandHills._id
-    // }).then(function(err){
-    //   if (err) console.log(err);
-    //   console.log('created user');
-    // }),
-    // User.create({
-    //   familyName: "Weiss",
-    //   address: "22219 Summit Vue Dr, Woodland Hills, CA 91367",
-    //   phoneNumer: "555-555-5555",
-    //   email: "weiss@weiss.com",
-    //   numFamilyMembers: 6,
-    //   monthlyGallons: 5,
-    //   dailyGallons: 5,
-    //   competition: woodlandHills._id
-    // }).then(function(err){
-    //   if (err) console.log(err);
-    //   console.log('created user');
-    // }),
-    // User.create({
-    //   familyName: "Hernandez",
-    //   address: "22545 Tiara St, Woodland Hills, CA 91367",
-    //   phoneNumer: "555-555-5555",
-    //   email: "hernandez@hernandez.com",
-    //   numFamilyMembers: 3,
-    //   monthlyGallons: 5,
-    //   dailyGallons: 5,
-    //   competition: woodlandHills._id
-    // }).then(function(err){
-    //   if (err) console.log(err);
-    //   console.log('created user');
-    // }),
-    // User.create({
-    //   familyName: "Purtlebaugh",
-    //   address: "22641 Califa St, Woodland Hills, CA 91367",
-    //   phoneNumer: "555-555-5555",
-    //   email: "purtlebaugh@purtlebaugh.com",
-    //   numFamilyMembers: 8,
-    //   monthlyGallons: 5,
-    //   dailyGallons: 5,
-    //   competition: woodlandHills._id
-    // }).then(function(err){
-    //   if (err) console.log(err);
-    //   console.log('created user');
-    // }),
-    // User.create({
-    //   familyName: "Ross",
-    //   address: "4131 Van Buren Pl, Culver City, CA 90232",
-    //   phoneNumer: "555-555-5555",
-    //   email: "ross@ross.com",
-    //   numFamilyMembers: 4,
-    //   monthlyGallons: 5,
-    //   dailyGallons: 5,
-    //   competition: culverCity._id
-    // }).then(function(err){
-    //   if (err) console.log(err);
-    //   console.log('created user');
-    // }),
-    // User.create({
-    //   familyName: "Kuwahara",
-    //   address: "4161 Irving Pl, Culver City, CA 90232",
-    //   phoneNumer: "555-555-5555",
-    //   email: "kuwahara@kuwahara.com",
-    //   numFamilyMembers: 5,
-    //   monthlyGallons: 5,
-    //   dailyGallons: 5,
-    //   competition: culverCity._id
-    // }).then(function(err){
-    //   if (err) console.log(err);
-    //   console.log('created user');
-    // }),
-    // User.create({
-    //   familyName: "Sanchez",
-    //   address: "4053 Duquesne Ave, Culver City, CA 90232",
-    //   phoneNumer: "555-555-5555",
-    //   email: "sanchez@sanchez.com",
-    //   numFamilyMembers: 3,
-    //   monthlyGallons: 5,
-    //   dailyGallons: 5,
-    //   competition: culverCity._id
-    // }).then(function(err){
-    //   if (err) console.log(err);
-    //   console.log('created user');
-    // }),
-    // User.create({
-    //   familyName: "Dayrit",
-    //   address: "4055 Lincoln Ave, Culver City, CA 90232",
-    //   phoneNumer: "555-555-5555",
-    //   email: "dayrit@dayrit.com",
-    //   numFamilyMembers: 4,
-    //   monthlyGallons: 4,
-    //   dailyGallons: 5,
-    //   competition: culverCity._id
-    // }).then(function(err){
-    //   if (err) console.log(err);
-    //   console.log('created user');
-    // })
-//   ]).then(function() {
-//     console.log('Users created');
-//     done();
-//   })
-// };
 
 var closeMongoose = function(done) {
   mongoose.disconnect();
