@@ -9,7 +9,6 @@ var woodlandHills;
 var pasadena;
 var culverCity;
 
-
 var removeUsers = function(done){
   User.remove({}, function(err){
     if (err){
@@ -40,8 +39,7 @@ var createCompetition = function(done){
       primaryContact: {
         name: "Bob",
         email: "bob@bob.com"
-      },
-      users:
+      }
     }, function(err, competition) {
       if (err) console.log(err);
       pasadena = competition;
@@ -77,29 +75,6 @@ var createCompetition = function(done){
     done();
   })
 };
-
-// var users = [
-//   {
-//     familyName: "Jone",
-//     address: "741 Elmira St, Pasadena, CA 91104",
-//     phoneNumer: "555-555-5555",
-//     email: "jone@jone.com",
-//     numFamilyMembers: 4,
-//     monthlyGallons: 5,
-//     dailyGallons: 5,
-//     competition: pasadena._id
-//   },
-//   {
-//     familyName: "Smith",
-//     address: "809 N Catalina Ave, Pasadena, CA 91104",
-//     phoneNumer: "555-555-5555",
-//     email: "smith@smith.com",
-//     numFamilyMembers: 5,
-//     monthlyGallons: 5,
-//     dailyGallons: 5,
-//     competition: pasadena._id
-//   }
-// ];
 
 var createUsers = function(done) {
   var users = [
@@ -273,11 +248,43 @@ var createUsers = function(done) {
   User.create(users, function(err, users){
     if(err) console.log("error" + err);
     console.log(users);
+    users.forEach(function(user){
+
+    })
   }).then(function(){
     done();
   })
-}
+};
 
+var pushUsersIntoCompetitions = function(done) {
+  Competition.find({name: "Pasadena"}, function(err, competition) {
+    console.log('competition: ' + competition);
+    User.find({}, function(err, users) {
+      var pasadenaUsers = users.filter(function(user){
+        return user.competition === competition
+      });
+      console.log('Pasadena users: ' + pasadenaUsers);
+      pasadenaUsers.forEach(function(user){
+        competition.users.push(user);
+      });
+    }).then(function(err, users){
+      console.log('Pasadena users pushed! >_< ');
+      done();
+    });
+  })
+};
+
+var testCompetitionPopulation = function(done) {
+  console.log(' Testing all competitions ');
+  Competition.find({})
+             .populate('users')
+             .exec(function(err, competitions) {
+                if (err) console.log(err);
+                console.log("Testing to see if users belong to competitions");
+                console.log("\n", competitions, "\n");
+                done();
+             });
+};
 
 var closeMongoose = function(done) {
   mongoose.disconnect();
@@ -290,5 +297,7 @@ async.series([
   removeCompetition,
   createCompetition,
   createUsers,
+  pushUsersIntoCompetitions,
+  testCompetitionPopulation,
   closeMongoose
 ]);
