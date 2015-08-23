@@ -28,4 +28,12 @@ router.get('/landing', function(req, res, next) {
   res.render('landing');
 });
 
+router.get('/login', function(req, res, next) {
+  res.render('auth/login');
+});
+
+router.get('/landing', function(req, res, next) {
+  res.render('landing');
+});
+
 module.exports = router;
