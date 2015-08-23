@@ -39,11 +39,7 @@ var createCompetition = function(done){
       primaryContact: {
         name: "Bob",
         email: "bob@bob.com"
-<<<<<<< Updated upstream
       }
-=======
-      },
->>>>>>> Stashed changes
     }, function(err, competition) {
       if (err) console.log(err);
       pasadena = competition;
