@@ -2,7 +2,7 @@ var express = require('express');
 var passport = require('passport');
 var router = express.Router();
 var sessionsController = require('../controllers/sessionsController');
-
+var usersController = require('../controllers/usersController');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
@@ -12,6 +12,8 @@ router.get('/', function(req, res, next) {
 router.get('/register', function(req, res, next) {
   res.render('auth/register');
 });
+
+router.post('/register', usersController.createUser);
 
 //get login page
 router.get('/login', function(req, res, next) {

@@ -5,8 +5,8 @@ var usersController   = require('../controllers/usersController');
 
 // show all the users
 router.get('/',          usersController.listUsers);
-// render the new user form
-router.post('/',         usersController.createUser);
+// create a new user
+// router.post('/',         usersController.createUser);
 // show the user
 router.get('/:id',       usersController.showUser);
 // render the edit user form
