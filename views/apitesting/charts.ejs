@@ -1,0 +1,31 @@
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <div class="family">
+    <% users.forEach(function(user) { %>
+
+      Team: <%= user.familyName %><br>
+      Address: <%= user.address %><br>
+      Phone number: <%= user.phoneNumber %><br>
+      Email: <%= user.email %><br>
+      Household Size: <%= user.numFamilyMembers %><br>
+      Monthly Water Consumption (gal): <%= user.monthlyGallons %><br>
+      Daily Water Consumption (gal): <%= user.dailyGallons %><br>
+      <br>
+    <%}); %>
+  </div>
+
+  <canvas id="myChart" width="500" height="500">
+
+  </canvas>
+
+
+  <script src="../../javascripts/api.js" type="text/javascript" charset="utf-8" async defer></script>
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+
+</body>
+</html>
+
