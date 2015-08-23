@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var User     = require('./User');
 
 var CompetitionSchema = mongoose.Schema({
   name: String,
@@ -11,7 +12,8 @@ var CompetitionSchema = mongoose.Schema({
   },
 
   users: [{
-    type: mongoose.Schema.Types.ObjectId, ref: 'User'
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }]
 
 });
