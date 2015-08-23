@@ -8,9 +8,10 @@ module.exports.renderLoginPage = function(req, res) {
 module.exports.loginUser = function(req, res, next) {
   req.session.save(function(err) {
     if(err) return next(err);
-    res.redirect('index');
+    res.redirect('/users');
   });
 };
+
 
 // module.exports.loginUser = function (req, res, next) {
 //   req.session.save(function (err) {
