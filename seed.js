@@ -24,7 +24,7 @@ var removeCompetition = function(done){
     if(err){
       console.log('error w/ competitions removal' + err);
     };
-    console.log("Competition removed", "\n");
+    console.log("Competitions removed", "\n");
     done();
   });
 };
@@ -71,7 +71,7 @@ var createCompetition = function(done){
       woodlandHills = competition;
     })
   ]).then(function(){
-    console.log('created competitions');
+    console.log('Created competitions', "\n");
     done();
   })
 };
@@ -87,7 +87,7 @@ var createUsers = function(done) {
       numFamilyMembers: 4,
       monthlyGallons: 5,
       dailyGallons: 5,
-      competition: pasadena._id
+      competition: "Pasadena"
     },
     {
       familyName: "Smith",
@@ -98,7 +98,7 @@ var createUsers = function(done) {
       numFamilyMembers: 5,
       monthlyGallons: 5,
       dailyGallons: 5,
-      competition: pasadena._id
+      competition: "Pasadena"
     },
     {
       familyName: "Johnson",
@@ -109,7 +109,7 @@ var createUsers = function(done) {
       numFamilyMembers: 4,
       monthlyGallons: 5,
       dailyGallons: 5,
-      competition: pasadena._id
+      competition: "Pasadena"
     },
     {
       familyName: "Burke",
@@ -120,7 +120,7 @@ var createUsers = function(done) {
       numFamilyMembers: 3,
       monthlyGallons: 5,
       dailyGallons: 5,
-      competition: pasadena._id
+      competition: "Pasadena"
     },
     {
       familyName: "Chang",
@@ -131,7 +131,7 @@ var createUsers = function(done) {
       numFamilyMembers: 8,
       monthlyGallons: 5,
       dailyGallons: 5,
-      competition: pasadena._id
+      competition: "Pasadena"
     },
     {
       familyName: "Turner",
@@ -142,7 +142,7 @@ var createUsers = function(done) {
       numFamilyMembers: 3,
       monthlyGallons: 5,
       dailyGallons: 5,
-      competition: woodlandHills._id
+      competition: "Woodland Hills"
     },
     {
       familyName: "Preston",
@@ -153,7 +153,7 @@ var createUsers = function(done) {
       numFamilyMembers: 4,
       monthlyGallons: 5,
       dailyGallons: 5,
-      competition: woodlandHills._id
+      competition: "Woodland Hills"
     },
     {
       familyName: "Weiss",
@@ -164,7 +164,7 @@ var createUsers = function(done) {
       numFamilyMembers: 6,
       monthlyGallons: 5,
       dailyGallons: 5,
-      competition: woodlandHills._id
+      competition: "Woodland Hills"
     },
     {
       familyName: "Hernandez",
@@ -175,7 +175,7 @@ var createUsers = function(done) {
       numFamilyMembers: 3,
       monthlyGallons: 5,
       dailyGallons: 5,
-      competition: woodlandHills._id
+      competition: "Woodland Hills"
     },
     {
       familyName: "Purtlebaugh",
@@ -186,7 +186,7 @@ var createUsers = function(done) {
       numFamilyMembers: 8,
       monthlyGallons: 5,
       dailyGallons: 5,
-      competition: woodlandHills._id
+      competition: "Woodland Hills"
     },
     {
       familyName: "Ross",
@@ -197,7 +197,7 @@ var createUsers = function(done) {
       numFamilyMembers: 4,
       monthlyGallons: 5,
       dailyGallons: 5,
-      competition: culverCity._id
+      competition: "Culver City"
     },
     {
       familyName: "Kuwahara",
@@ -208,7 +208,7 @@ var createUsers = function(done) {
       numFamilyMembers: 5,
       monthlyGallons: 5,
       dailyGallons: 5,
-      competition: culverCity._id
+      competition: "Culver City"
     },
     {
       familyName: "Sanchez",
@@ -219,7 +219,7 @@ var createUsers = function(done) {
       numFamilyMembers: 3,
       monthlyGallons: 5,
       dailyGallons: 5,
-      competition: culverCity._id
+      competition: "Culver City"
     },
     {
       familyName: "Dayrit",
@@ -230,7 +230,7 @@ var createUsers = function(done) {
       numFamilyMembers: 4,
       monthlyGallons: 4,
       dailyGallons: 5,
-      competition: culverCity._id
+      competition: "Culver City"
     },
     {
       familyName: "Daily",
@@ -241,36 +241,53 @@ var createUsers = function(done) {
       numFamilyMembers: 4,
       monthlyGallons: 4,
       dailyGallons: 5,
-      competition: culverCity._id
+      competition: "Culver City"
     }
   ];
 
   User.create(users, function(err, users){
     if(err) console.log("error" + err);
-    console.log(users);
-    users.forEach(function(user){
-
-    })
   }).then(function(){
     done();
   })
 };
 
-var pushUsersIntoCompetitions = function(done) {
-  Competition.find({name: "Pasadena"}, function(err, competition) {
-    console.log('competition: ' + competition);
-    User.find({}, function(err, users) {
-      var pasadenaUsers = users.filter(function(user){
-        return user.competition === competition
-      });
-      console.log('Pasadena users: ' + pasadenaUsers);
-      pasadenaUsers.forEach(function(user){
-        competition.users.push(user);
-      });
-    }).then(function(err, users){
-      console.log('Pasadena users pushed! >_< ');
-      done();
+var pushUsersIntoPasadena = function(done) {
+  User.find({competition: "Pasadena"}, function(err, users) {
+    Competition.find({name: "Pasadena"}).then(function(competition){
+      console.log('competition: ' + pasadena);
+    })
+  }).then(function(users) {
+    users.forEach(function(user) {
+      pasadena.users.push(user);
     });
+    done();
+  })
+};
+
+var pushUsersIntoWoodlandHills = function(done) {
+  User.find({competition: "Woodland Hills"}, function(err, users) {
+    Competition.find({name: "Woodland Hills"}).then(function(competition){
+      console.log('competition: ' + woodlandHills);
+    })
+  }).then(function(users) {
+    users.forEach(function(user) {
+      woodlandHills.users.push(user);
+    });
+    done();
+  })
+};
+
+var pushUsersIntoCulverCity = function(done) {
+  User.find({competition: "Culver City"}, function(err, users) {
+    Competition.find({name: "Culver City"}).then(function(competition){
+      console.log('competition: ' + culverCity);
+    })
+  }).then(function(users) {
+    users.forEach(function(user) {
+      culverCity.users.push(user);
+    });
+    done();
   })
 };
 
@@ -297,7 +314,9 @@ async.series([
   removeCompetition,
   createCompetition,
   createUsers,
-  pushUsersIntoCompetitions,
+  pushUsersIntoPasadena,
+  pushUsersIntoWoodlandHills,
+  pushUsersIntoCulverCity,
   testCompetitionPopulation,
   closeMongoose
 ]);
