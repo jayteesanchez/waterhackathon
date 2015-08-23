@@ -6,9 +6,13 @@
   <div class="row">
     <div class="col s10">
       <form action="/users" method="post" accept-charset="utf-8">
+        <div>
         <input type="hidden">
         <label for="familyName">Family Name</label>
         <input type="text" name="familyName">
+        <label for="password" name="password">Password</label>
+        <input type="text" name="password">
+      </div>
         <label for="address">Address</label>
         <input type="text" name="address">
         <label for="phoneNumber">Phone Number</label>
@@ -21,6 +25,14 @@
         <input type="text" name="monthlyGallons">
         <label for="dailyGallons">Daily Water Usage in Gallons</label>
         <input type="text" name="dailyGallons">
+        <div class="input-field col s12">
+          <select>
+            <option value="Pasadena">Pasadena</option>
+            <option value="Woodland Hills">Woodland Hills</option>
+            <option value="Culver City">Culver City</option>
+          </select>
+        <label for="competition">City</label>
+      </div>
         <button class="waves-effect waves-light btn" type="submit" value="Submit">Register</button>
       </form>
     </div>
