@@ -1,3 +1,44 @@
 <% include ../partials/head %>
 <% include ../partials/nav %>
-<p>Index View</p>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<div class="row">
+  <div class="col s6 offset-s5">
+    <span>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <i class="large material-icons">insert_chart</i>
+      <h4>Days to Go!!</h4>
+    </span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row table-row">
+    <div class="col s6">
+        <h3 class="center">Family Name</h3>
+          <% users.forEach(function(user, i) { %>
+        <h5 class="center"><%= user.familyName %></h5>
+      <%}); %>
+    </div>
+
+    <div class="col s6">
+      <h3>Monthly Consumption</h3>
+      <% users.forEach(function(user, i) { %>
+        <h5 class="center"><%= user.monthlyGallons %></h5>
+      <%}); %>
+    </div>
+  </div>
+</div>
+<br><br>
+<div class="row">
+  <div class="col s10 offset-s2">
+    <canvas id="myChart" width="1100px" height="500px"></canvas>
+  </div>
+</div>
+
+  <script src="../../javascripts/api.js" type="text/javascript" charset="utf-8" async defer></script>
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+  <% include ../partials/footer %>
