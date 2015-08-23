@@ -1,5 +1,6 @@
 var passport = require('passport');
 var User = require('../models/User');
+var Competition = require('../models/Competition');
 
 // List all users
 var listUsers = function(req, res, next) {
@@ -13,14 +14,21 @@ var listUsers = function(req, res, next) {
   });
 };
 
+
 // Create a new user
 var createUser = function(req, res) {
   User.register(new User(
     {
-      username: req.body.username,
-      zipcode: req.body.zipcode
+      username: req.body.familyName,
+      address: req.body.address,
+      phoneNumber: req.body.phoneNumber,
+      email: req.body.email,
+      numFamilyMembers: req.body.numFamilyMembers,
+      montlyGallons: req.body.montlyGallons,
+      dailyGallons: req.body.dailyGallons,
+      competition: req.body.competition
     }), req.body.password, function(err, user) {
-      if (err) return res.render('users/new',
+      if (err) return res.render('auth/register',
         {user: user});
         passport.authenticate('local')(req, res, function() {
           req.session.save(function(err) {

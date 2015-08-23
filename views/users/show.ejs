@@ -1,2 +1,26 @@
 <% include ../partials/head %>
-<p>Show View</p>
+<% include ../partials/nav %>
+
+<div class="container">
+  <h2><%= user.familyName %></h2>
+  <div class="row">
+    <div class="col s12">
+      <div class="counter"></div>
+      <div class="avgGallChart"></div>
+      <div></div>
+      <div class="row waterTips">
+        <div class="col s4 tip">
+        </div>
+        <div class="col s4 tip">
+        </div>
+        <div class="col s4 tip">
+        </div>
+      </div>
+      <%= user.numFamilyMembers %>
+      <%= user.monthlyGallons %>
+      <%= user.dailyGallons %>
+    <div>
+  </div>
+</div>
+
+<% include ../partials/footer %>
