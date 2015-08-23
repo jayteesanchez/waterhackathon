@@ -91,7 +91,7 @@ var showUser = function(req, res, next) {
   User.findById({_id: id}, function(error, user) {
     if(error) res.json({message: 'Could not find user because: ' + error});
     res.render(
-      '/users/show', {
+      './users/show', {
         user: req.user
       }
     )
