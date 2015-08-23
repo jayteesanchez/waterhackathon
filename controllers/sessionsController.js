@@ -8,8 +8,14 @@ module.exports.renderLoginPage = function(req, res) {
 module.exports.loginUser = function(req, res, next) {
   req.session.save(function(err) {
     if(err) return next(err);
-    res.redirect('/users');
+    res.redirect('/users', {user: req.user});
   });
+};
+
+module.exports.logoutUser = function(req, res, next) {
+  req.logout();
+  res.redirect('/');
+
 };
 
 
