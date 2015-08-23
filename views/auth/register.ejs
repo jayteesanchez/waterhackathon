@@ -4,26 +4,28 @@
   <% include ../partials/head %>
 </head>
 <body>
+      <% include ../partials/nav %>
+
 <div class="container">
   <h2>Register</h2>
   <div class="row">
     <div class="col s10">
       <form action="/users" method="post" accept-charset="utf-8">
         <input type="hidden">
-        <label for="familyName"></label>
+        <label for="familyName">Family Name</label>
         <input type="text" name="familyName">
-        <label for="address"></label>
+        <label for="address">Address</label>
         <input type="text" name="address">
-        <label for="phoneNumber"></label>
+        <label for="phoneNumber">Phone Number</label>
         <input type="text" name="phoneNumber">
-        <label for="email"></label>
+        <label for="email">Email Address</label>
         <input type="text" name="email">
-        <label for="numFamilyMembers"></label>
+        <label for="numFamilyMembers">Number of Family Members</label>
         <input type="text" name="numFamilyMembers">
-        <label for="monthlyGallons"></label>
+        <label for="monthlyGallons">Monthly Water Usage in Gallons</label>
         <input type="text" name="monthlyGallons">
-        <label for="monthlyGallons"></label>
-        <input type="text" name="monthlyGallons">
+        <label for="dailyGallons">Daily Water Usage in Gallons</label>
+        <input type="text" name="dailyGallons">
         <button class="waves-effect waves-light btn" type="submit" value="Submit">Register</button>
       </form>
     </div>
